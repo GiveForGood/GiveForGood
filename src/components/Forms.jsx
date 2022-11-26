@@ -70,16 +70,16 @@ function makeFileObjects () {
       <h2 className={styles.heading2}>To start a new campaign, Please fill the form below;</h2>
         <form onSubmit={handleSubmit}>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>First name:</p>
-        <input value={userDetails.firstName} onChange={(e) => setUserDetails({...userDetails, firstName:e.target.value})} className="bg-transparent text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
+        <input value={userDetails.firstName} onChange={(e) => setUserDetails({...userDetails, firstName:e.target.value})} className="bg-dimWhite text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Last name:</p>
-        <input value={userDetails.lastName} onChange={(e) => setUserDetails({...userDetails, lastName:e.target.value})} className="bg-transparent text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
+        <input value={userDetails.lastName} onChange={(e) => setUserDetails({...userDetails, lastName:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Reason:</p>
-        <input value={userDetails.reason} onChange={(e) => setUserDetails({...userDetails, reason:e.target.value})} className="bg-transparent text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
+        <input value={userDetails.reason} onChange={(e) => setUserDetails({...userDetails, reason:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Ammount goal (optional):</p>
-        <input value={userDetails.amount} onChange={(e) => setUserDetails({...userDetails, amount:e.target.value})} className="bg-transparent text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
+        <input value={userDetails.amount} onChange={(e) => setUserDetails({...userDetails, amount:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
 
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Comments:</p>
-        <input value={userDetails.comments} onChange={(e) => setUserDetails({...userDetails, comments:e.target.value})} className="bg-transparent text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
+        <input value={userDetails.comments} onChange={(e) => setUserDetails({...userDetails, comments:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <div>
          {/* <div className={`${styles.flexCenter} sm:ml-10 ml-0 ss:mt-0 mt-10`}>
             <Button />
