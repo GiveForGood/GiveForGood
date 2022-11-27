@@ -98,8 +98,8 @@ const Table = () => {
     }
 
   return (
-    <section className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-white rounded-[20px] box-shadow w-full`}>
-      <div className="flex-1 flex flex-col">
+    <section className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow w-full`}>
+      <div className="flex-1 flex flex-col bg-black-gradient-2">
       <h2 className={styles.heading2}>Applicants for Fund.</h2>
       <div className="p-2 w-full flex flex-col items-center">
       <table cellPadding={20} border={10} className="border border-black">
