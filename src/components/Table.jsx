@@ -8,7 +8,7 @@ import {
   } from '@tanstack/react-table'
 import { Web3Storage } from 'web3.storage'
 import { useDispatch } from "react-redux";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { saveSelectedUser } from "../state/userData/userDataSlice";
 
   
@@ -40,6 +40,8 @@ footer: info => info.column.id,
 
 
 const Table = () => {
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
@@ -124,7 +126,7 @@ const Table = () => {
               {row.getVisibleCells().map(cell => (
                 <td onClick={() =>{ 
                     handleData(cell.getContext())
-                    return redirect("/user")
+                    navigate("/user")
                 }
                     } key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
