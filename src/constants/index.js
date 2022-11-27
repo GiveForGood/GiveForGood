@@ -34,10 +34,7 @@ export const navLinks = [
     id: "users",
     title: "Users",
   },
-  {
-    id: "user",
-    title: "User",
-  },
+
 ];
 
 export const features = [
