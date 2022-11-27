@@ -77,6 +77,7 @@ const Forms = () => {
       console.log("user", userDetails)
       const cidData = await storeFiles(data)
       setLoading(false)
+      alert("User Registered Successfully")
       setCid(cidData)
       setUserDetails({
         firstName:'',
@@ -92,6 +93,9 @@ const Forms = () => {
   return (
     <section className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow w-1/2`}>
       <div className="flex-1 flex flex-col">
+      {
+        loading?<p className="font-bold text-white">Loading...</p>:''
+      }
       <h2 className={styles.heading2}>Apply for Fund.</h2>
         <form onSubmit={handleSubmit}>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>First name:</p>
