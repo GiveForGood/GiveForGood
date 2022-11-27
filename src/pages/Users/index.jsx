@@ -16,7 +16,7 @@ const Users = () => {
          <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
            <div className={`${styles.boxWidth}`}>
             <h1 className="text-2xl font-bold text-white text-center p-2">Users Registered For Fund</h1>
-            <div className="flex justify-center">
+            <div className="flex justify-center pb-[250px]">
               <Table/>
             </div>
               < Footer />
