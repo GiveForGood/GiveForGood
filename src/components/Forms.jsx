@@ -1,19 +1,62 @@
 import styles from "../style";
-// import { fabricatedData } from "../constants";
-import Button from "./Button";
-import { useState, useRef } from "react";
+import React, { useState} from "react";
+import { Buffer } from "buffer";
+import { Web3Storage, getFilesFromPath, File } from 'web3.storage'
 
-const Input = ({name}) => (
-    <input value={userDetails.name} onChange={(e) => setUserDetails({...userDetails, name:e.target.value})} className="bg-transparent text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
-)
 
 const Forms = () => {
-    // const [firstname, setfirstname] = useState("") 
-    // on using useREf hooh care to handle the submit
-    const firstnameRef = useRef()
 
-   
+  const getAccessToken = () => {
+    // console.log(process.env.WEB3STORAGE_TOKEN)
+    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDY1MEU3NjRFMEM4NjAwQ2Q5QTQ1MTZENzJGMTFEOTM3NjViMjIyOTAiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2Njk1MDU4OTc4OTYsIm5hbWUiOiJtYWx1bHUifQ.tbHFCYkW0UH97BDcByYgOeznM8vsZSXbVuZolNooa8A';
+  }
 
+  const makeStorageClient = () => {
+    return new Web3Storage({token:getAccessToken()})
+  }
+
+
+  const makeFileObjects = () => {
+    const obj = { 
+      firstname: userDetails.firstName ,
+      lastname: userDetails.lastName ,
+      reasons: userDetails.reason,
+      amountgoal: userDetails.amount,
+      commentsfordonor: userDetails.comments
+   }
+
+    const buffer = Buffer.from(JSON.stringify(obj))
+
+    const files = [
+      new File([buffer], `${userDetails.firstName} ${userDetails.lastName}`)
+    ]
+    return files;
+  }
+
+  const storeFiles = async(files) => {
+    const client = makeStorageClient()
+    const cid = await client.put(files)
+    console.log('stored files with cid:', cid)
+    return cid
+  }
+
+  const retrieveFiles = async(cid) => {
+    const client = makeStorageClient()
+    const res = await client.get(cid)
+    // const value = await res.files()
+    console.log(`Got a response! [${res.status}] ${res.ok}`)
+    if (!res.ok) {
+      console.log(`failed to get ${cid} - [${res.status}] ${res.body}`)
+    }
+  
+    const files = await res.files()
+    for (const file of files) {
+      console.log(`${file.cid} -- ${file.name} -- ${file.size}`)
+      const text = await file.text()
+      const obj = JSON.parse(text)
+      console.log("text", text, obj)
+    }
+  }
 
     const [userDetails, setUserDetails] = useState({
       firstName:'',
@@ -23,51 +66,26 @@ const Forms = () => {
       comments:''
     });
 
-    const postUserDetails = async (data) => {
-      const response = await fetch('url',{
-        method:'POST',
-        body:JSON.stringify(data)
-      })
-    }
+    const [cid, setCid] = useState('')
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      postUserDetails(userDetails)
-      //  const data = makeFileObjects();
-      //  console.log(data)
+      const data = makeFileObjects(userDetails)
+      console.log("user", userDetails)
+      const cidData = await storeFiles(data)
+      setCid(cidData)
     }
 
-
-function makeFileObjects () {
-
-    const obj = { 
-        firstname: userDetails.firstName ,
-        lastname: userDetails.lastName ,
-        reasons: userDetails.reason,
-        amountgoal: userDetails.amount,
-        commentsfordonor: userDetails.comments
-     }
-    const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
-  
-    const files = [
-      new File(['contents-of-file-1'], 'plain-utf8.txt'),
-      new File([blob], 'userdetails.json')
-    ]
-    return files
-  }
-
-  // get the created files
-// function getFiles () {
-//     const fileInput = document.querySelector('input[type="file"]')
-//     return fileInput.files
-//   }
-
+    const handleGenerate = async (e) => {
+      e.preventDefault();
+       console.log(cid)
+      await retrieveFiles(cid)
+    }
 
   return (
-    <section className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow `}>
+    <section className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow w-1/2`}>
       <div className="flex-1 flex flex-col">
-      <h2 className={styles.heading2}>To start a new campaign, Please fill the form below;</h2>
+      <h2 className={styles.heading2}>Apply for Fund.</h2>
         <form onSubmit={handleSubmit}>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>First name:</p>
         <input value={userDetails.firstName} onChange={(e) => setUserDetails({...userDetails, firstName:e.target.value})} className="bg-dimWhite text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
@@ -81,9 +99,6 @@ function makeFileObjects () {
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Comments:</p>
         <input value={userDetails.comments} onChange={(e) => setUserDetails({...userDetails, comments:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <div>
-         {/* <div className={`${styles.flexCenter} sm:ml-10 ml-0 ss:mt-0 mt-10`}>
-            <Button />
-          </div> */}
           <button onClick={handleSubmit} className={`py-4 mt-3 px-6 bg-blue-gradient font-poppins font-medium text-[18px] text-primary outline-none ${styles} rounded-[10px] `}>Submit</button>
         </div>
         </form>

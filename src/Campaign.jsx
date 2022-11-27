@@ -12,7 +12,6 @@ const Campaign = () => {
               < Navbar />
          </div>
          </div>
-
          <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
            <div className={`${styles.boxWidth}`}>
               < Business />
@@ -20,8 +19,6 @@ const Campaign = () => {
               < Footer />
            </div>
          </div>
-
-
     </div>
    )
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { close, logo, menu } from '../assets';
-
+import { Link } from "react-router-dom";
 import { navLinks } from '../constants';
 
 const Navbar = () => {
@@ -17,9 +17,9 @@ const Navbar = () => {
             key={nav.id}
             className={`font-poppins font-normal cursor-pointer text-[16px] ${ index === navLinks.length-1 ? 'mr-0' : 'mr-10' }  text-white `}
             >
-                <a href={`#${nav.id}`}>
+                <Link to={`/${nav.id}`}>
                     {nav.title}
-                </a>
+                </Link>
             </li>
             ))}
         </ul>

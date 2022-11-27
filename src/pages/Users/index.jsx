@@ -1,12 +1,11 @@
 import React from "react";
-import styles  from "./style";
+import styles  from "../../style";
+import {Navbar,Footer } from "../../components";
+import Table from "../../components/Table";
+// import ListTable from "./components/ListTable";
 
-import {Navbar, Hero , Business ,Footer } from "./components";
-import Forms from "./components/Forms";
-import ListTable from "./components/ListTable";
 
-
-const Home = () => {
+const Users = () => {
    return(
   <div className="bg-primary w-full overflow-hidden bg-black-gradient">
          <div className={`${styles.paddingX} ${styles.flexCenter}`}>
@@ -14,23 +13,16 @@ const Home = () => {
               < Navbar />
          </div>
          </div>
-
-         <div className={`bg-primary ${styles.flexStart}`}>
-           <div className={`$styles.boxWidth`}>
-              < Hero />              
-           </div>
-         </div>
-
          <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
            <div className={`${styles.boxWidth}`}>
-              < Business />
+            <div className="flex justify-center">
+              <Table/>
+            </div>
               < Footer />
            </div>
          </div>
-
-
     </div>
    )
 }
 
-export default Home
+export default Users
