@@ -39,12 +39,12 @@ const User = () => {
               <p className="text-white px-2 font-semibold">Created At:</p>
                   <p className="text-white">{selectedUser.createdAt}</p>      
               </div>
-              <div className=" flex p-4">
+              <div className=" flex p-4 space-x-4">
               <p className="text-white px-2 font-semibold">Amount:</p>
               <input type="number" className="bg-dimWhite text-black p-2 rounded-sm w-1/2 font-poppins rounded-full cursor-pointer  border-[#3d4f7c]"/>
 
               </div>
-              <div className=" flex p-4">
+              <div className=" flex p-4 space-x-2">
               <p className="text-white px-2 font-semibold">Full name:</p>
                 <input type="text" className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full w-1/2 cursor-pointer  border-[#3d4f7c]"/>
               </div>

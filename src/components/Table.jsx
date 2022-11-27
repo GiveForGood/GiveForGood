@@ -79,7 +79,7 @@ const Table = () => {
             name:upload.name,
             cid:upload.cid,
             size:upload.dagSize,
-            createdAt:upload.created
+            createdAt:new Date(upload.created).toString()
         })
         console.log(`${upload.name} - cid: ${upload.cid} - size: ${upload.dagSize}`)
       }
@@ -87,7 +87,6 @@ const Table = () => {
   }
 
 
-    
     const fetchFunction =  async() => {  
        const users = await listUsers()
     }
