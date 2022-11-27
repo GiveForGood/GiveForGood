@@ -68,19 +68,26 @@ const Forms = () => {
 
     const [cid, setCid] = useState('')
 
+    const [loading, setLoading] = useState(false)
+
     const handleSubmit = async (e) => {
+      setLoading(true)
       e.preventDefault();
       const data = makeFileObjects(userDetails)
       console.log("user", userDetails)
       const cidData = await storeFiles(data)
+      setLoading(false)
       setCid(cidData)
+      setUserDetails({
+        firstName:'',
+        lastName:'',
+        reason:'',
+        amount:0,
+        comments:''
+      })
     }
 
-    const handleGenerate = async (e) => {
-      e.preventDefault();
-       console.log(cid)
-      await retrieveFiles(cid)
-    }
+
 
   return (
     <section className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow w-1/2`}>
@@ -99,7 +106,7 @@ const Forms = () => {
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Comments:</p>
         <input value={userDetails.comments} onChange={(e) => setUserDetails({...userDetails, comments:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <div>
-          <button onClick={handleSubmit} className={`py-4 mt-3 px-6 bg-blue-gradient font-poppins font-medium text-[18px] text-primary outline-none ${styles} rounded-[10px] `}>Submit</button>
+          <button disabled={loading} onClick={handleSubmit} className={`py-4 mt-3 px-6 ${loading?'bg-dimWhite text-black':'bg-blue-gradient text-primary'} font-poppins font-medium text-[18px]  outline-none ${styles} rounded-[10px] `}>Submit</button>
         </div>
         </form>
     </div>
