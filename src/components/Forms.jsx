@@ -88,7 +88,7 @@ const Forms = () => {
       <h2 className={styles.heading2}>Apply for Fund.</h2>
         <form onSubmit={handleSubmit}>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>First name:</p>
-        <input value={userDetails.firstName} onChange={(e) => setUserDetails({...userDetails, firstName:e.target.value})} className="bg-dimWhite text-white p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
+        <input value={userDetails.firstName} onChange={(e) => setUserDetails({...userDetails, firstName:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Last name:</p>
         <input value={userDetails.lastName} onChange={(e) => setUserDetails({...userDetails, lastName:e.target.value})} className="bg-dimWhite text-black p-2 rounded-sm font-poppins rounded-full cursor-pointer sm:w-[100%] border-[#3d4f7c]"/>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>Reason:</p>
