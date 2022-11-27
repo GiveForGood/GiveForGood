@@ -1,15 +1,42 @@
 // this where we come to put some static texts
 
-import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star  } from "../assets";
+import {
+  people01,
+  people02,
+  people03,
+  facebook,
+  instagram,
+  linkedin,
+  twitter,
+  airbnb,
+  binance,
+  coinbase,
+  dropbox,
+  send,
+  shield,
+  star,
+} from "../assets";
 
 export const navLinks = [
   {
-    id: "home",
+    id: "",
     title: "Home",
   },
   {
     id: "features",
     title: "My Campaign",
+  },
+  {
+    id: "registerfund",
+    title: "Register",
+  },
+  {
+    id: "users",
+    title: "Users",
+  },
+  {
+    id: "user",
+    title: "User",
   },
 ];
 
@@ -212,5 +239,4 @@ export const transactionData = [
     Ammount: "5000",
     Comments: "Malaria",
   },
-
 ];
